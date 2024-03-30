@@ -9,6 +9,7 @@ import {
 } from '../controllers/tasks.controllers.js'
 import { check } from 'express-validator'
 import { reqFieldsValidator } from '../middlewares/req-fields-validator.js'
+import { taskNameExist } from '../helpers/taskNameExist.js'
 
 const router = Router()
 
@@ -23,11 +24,12 @@ router.post(
   '/',
   [
     check('title', 'ERROR: Please insert a title').not().isEmpty(),
+    check('title').custom((title) => taskNameExist(title)),
     check('description', 'ERROR: Please insert a description').not().isEmpty(),
     reqFieldsValidator
   ],
   postTask
-);
+)
 
 router.put('/:id', putTask);
 
