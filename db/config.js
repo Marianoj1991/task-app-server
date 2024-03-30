@@ -4,8 +4,7 @@ const { Pool } = pkg;
 const counter = 1;
 
 export const pool = new Pool({
-  connectionString: process.env.POSTGRES_URL,
-    ssl: true
+  connectionString: process.env.POSTGRES_URL
 })
 
 // async function createDatabase () {
