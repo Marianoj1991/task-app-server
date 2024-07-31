@@ -1,7 +1,7 @@
 import pkg from 'pg';
 const { Pool } = pkg;
 
-const counter = 1;
+const counter = 0;
 
 export const pool = new Pool({
   connectionString: process.env.POSTGRES_URL
@@ -32,4 +32,5 @@ async function createDatabaseAndTable() {
 }
 if(!counter) {
   createDatabaseAndTable();
+  counter = 1
 } 
